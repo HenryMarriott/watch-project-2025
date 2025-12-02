@@ -1,0 +1,98 @@
+#include "apps/menu.h"
+#include "apps/wifiConn.h"
+#include "apps/watchface.h"
+
+#include <Arduino.h>
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+//font size 1 = 6x8 pixels
+#include <WiFi.h>
+#include "time.h"
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+#define OLED_RESET -1 // Reset pin (not used)
+#define SCREEN_ADDRESS 0x3C // Common I2C address for OLED displays
+
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+WifiConn wifi(&display);
+Menu menu(&display, &wifi);
+watchface wf(&display);
+
+
+int t = 0;
+
+const int flex1 = A0;  // GPIO 4 (analog capable)
+int bent1 = 0;
+const int flex2 = A1;  // GPIO 5 (analog capable)
+int bent2 = 0;
+
+void printStrings(String str, int size, int x, int y);
+void flexRead();
+
+void setup() {
+    Serial.begin(115200);
+
+    if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
+        Serial.println("SSD1306 not detected! Check wiring.");
+        while (true);
+    }
+
+    wifi.start();
+}
+
+void loop() {
+    flexRead();
+    wf.setBendStates(bent1, bent2);
+    wifi.setBendStates(bent1, bent2);
+    menu.setBendStates(bent1, bent2);
+    if (t > 9){
+        wf.start();
+        t = 0;
+    } else {t++;}
+    if (bent1 == 1 && bent2 == 1){
+        wf.setFirstUpdate(true);
+        menu.start();
+    }
+    delay(10);
+}
+
+void printStrings(String str, int size, int x, int y){
+    char space = ' ';
+    int length = str.length();
+    int max = 128/(6*size);
+
+    if (length > max){
+        while (str[max] != space){ max--; }
+        String line1 = String(str).substring(0,max);
+        String line2 = String(str).substring(max+1,length);
+        display.setTextSize(size);
+        display.setTextColor(WHITE);
+        display.setCursor(x,y);
+        display.print(line1);
+        display.setCursor(x,y+(8*size)+1);
+        display.print(line2);
+    } else {
+        display.setTextSize(size);
+        display.setTextColor(WHITE);
+        display.setCursor(x,y);
+        display.print(str);
+    }
+}
+
+void flexRead() {
+    int flex1An = analogRead(flex1);
+    if (flex1An < 100){bent1=1;}
+    else {bent1=0;} 
+    int flex2An = analogRead(flex2);
+    if (flex2An > 3000){bent2=1;}
+    else {bent2=0;}
+
+    Serial.print(flex1An); Serial.print("  "); 
+    Serial.println(flex2An);
+
+    wf.setBendStates(bent1, bent2);
+    wifi.setBendStates(bent1, bent2);
+    menu.setBendStates(bent1, bent2);
+}
