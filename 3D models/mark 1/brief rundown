@@ -1,0 +1,8 @@
+had two separate sections. One for the battery and screen, and one for the esp32c6 and wiring. (the battery was 300mAh for this design)
+
+This design failed due to overcomplicated design. Having wires between the two sections that would regularly bend was not a sustainable design under wear, especially given that the PCB required surface mounted pads for wires which were especially delicate.
+
+The lessons learnt from this design:
+the concept works. 
+avoid wires and surface mounting where possible and opt for headers and molex picoblades for connectors.
+size needs to be reduced to allow a single section, similar to a more traditional watch look
