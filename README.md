@@ -5,5 +5,5 @@ The thesis of this project is to create a smartwatch that connects to apple and 
 
 The watch will be controlled by rings attached to the hand, allowing for "gesture control" rather than traditional buttons and dials. This allows for one handed control. 
 
-Hardware included: Seeed Studio XIAO esp32c6, 2x flex sensors, 0.96 inch oled, 100mAh LiPo battery.
+Hardware included: Seeed Studio XIAO esp32c6, 2x flex sensors, 0.96 inch oled, 100mAh LiPo battery. As well as a custom designed PCB, watch strap and watch case
 
