@@ -1,0 +1,3 @@
+Given the lessons learnt from the last iteration, the largest change was the reduction of battery size to 100mAh. This means drastic changes to code to extend battery life utlising the different sleep within the esp32c6.
+
+The aim of the design was to maintain a small footprint (target of < 30x30x1mm) while allowing for more solid connections. 
