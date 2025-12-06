@@ -1,0 +1,192 @@
+{
+  "uuid": "890e3647e43e6c8d76a2e475e550c50c",
+  "path": "Offline/wiring layout",
+  "name": "wiring layout",
+  "content": "",
+  "created_at": "2025-11-14 11:16:22",
+  "updated_at": "2025-11-14 21:15:45",
+  "stick": "",
+  "documents": [
+    {
+      "uuid": "a77d107ede74d78dae51ec5056088d15",
+      "title": "Sheet_1",
+      "description": "",
+      "docType": "1",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "efffc24e768b4ae69d39f2edda2e269a": 2,
+        "a9aa2b14f188405792fa87ac344499a4": 3,
+        "94899469341549309c8ec28892ef8551": 8
+      },
+      "BOM": [
+        [
+          "Value",
+          "Quantity",
+          "Package",
+          "Components",
+          "CustomPara"
+        ],
+        [
+          "AN",
+          1,
+          "HDR-M-2.54_1X2",
+          "AN",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "LCSC",
+            "Supplier Part": "C124375"
+          }
+        ],
+        [
+          "PAD_SMD_4X2MM",
+          8,
+          "PADPAD",
+          "F1_P,F1_SIG,F2_P,F2_SIG,GND,SCL,SDA,VCC",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "",
+            "Supplier Part": ""
+          }
+        ],
+        [
+          "I2C",
+          1,
+          "HDR-M-2.54_1X2",
+          "I2C",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "LCSC",
+            "Supplier Part": "C124375"
+          }
+        ],
+        [
+          "PWR",
+          1,
+          "HDR-M-2.54_1X2",
+          "PWR",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "LCSC",
+            "Supplier Part": "C124375"
+          }
+        ],
+        [
+          "10k",
+          2,
+          "R1206",
+          "R4,R5",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "",
+            "Supplier Part": ""
+          }
+        ]
+      ],
+      "updateTime": 1763138929,
+      "createTime": 1763118982,
+      "histories": [],
+      "created_at": "2025-11-14 11:16:22",
+      "updated_at": "2025-11-14 16:48:49"
+    },
+    {
+      "uuid": "dcbc6871f3c1279407535a4cb55393b5",
+      "puuid": "890e3647e43e6c8d76a2e475e550c50c",
+      "title": "PCB_wiring layout",
+      "filename": "PCB_wiring layout.json",
+      "description": "",
+      "docType": "3",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "70aa5812f21f4991bf427395d51849f4": 3,
+        "20741e2abf7343d6818d71ced1615790": 8,
+        "8e9b1be4bcb6420dbd1d09bf04b02792": 2
+      },
+      "BOM": [
+        [
+          "Value",
+          "Quantity",
+          "Package",
+          "Components",
+          "CustomPara"
+        ],
+        [
+          "AN",
+          1,
+          "HDR-M-2.54_1X2",
+          "AN",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "LCSC",
+            "Supplier Part": "C124375"
+          }
+        ],
+        [
+          "I2C",
+          1,
+          "HDR-M-2.54_1X2",
+          "I2C",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "LCSC",
+            "Supplier Part": "C124375"
+          }
+        ],
+        [
+          "PWR",
+          1,
+          "HDR-M-2.54_1X2",
+          "PWR",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "LCSC",
+            "Supplier Part": "C124375"
+          }
+        ],
+        [
+          "PAD_SMD_4X2MM",
+          8,
+          "PADPAD",
+          "F1_P,F1_SIG,F2_P,F2_SIG,GND,SCL,SDA,VCC",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "",
+            "Supplier Part": ""
+          }
+        ],
+        [
+          "10k",
+          2,
+          "R1206",
+          "R4,R5",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "",
+            "Supplier Part": ""
+          }
+        ]
+      ],
+      "updateTime": 1763154945,
+      "createTime": 1763140542,
+      "histories": [],
+      "created_at": "2025-11-14 17:15:42",
+      "updated_at": "2025-11-14 21:15:45"
+    }
+  ],
+  "sort": [],
+  "title": "wiring layout",
+  "foldername": "wiring layout",
+  "schfilename": "wiring layout.json",
+  "schfilemtime": 1763138929490
+}
