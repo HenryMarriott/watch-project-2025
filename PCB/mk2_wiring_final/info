@@ -1,0 +1,296 @@
+{
+  "uuid": "6a525feaacb3c338e4871efd21231ddc",
+  "path": "Offline/mk2_wiring_PCB",
+  "name": "mk2_wiring_PCB",
+  "content": "",
+  "created_at": "2025-12-05 11:43:55",
+  "updated_at": "2025-12-05 17:20:54",
+  "stick": "",
+  "documents": [
+    {
+      "uuid": "521cd8851e888fdb03d196203f33676d",
+      "puuid": "6a525feaacb3c338e4871efd21231ddc",
+      "title": "PCB_mk2_wiring_2",
+      "filename": "PCB_mk2_wiring_2.json",
+      "description": "",
+      "docType": "3",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "20741e2abf7343d6818d71ced1615790": 2,
+        "70aa5812f21f4991bf427395d51849f4": 3,
+        "df40d35850de46e3a34d4a07d3c4e5bd": 1,
+        "282f7786cb6144d097ae00194c3e3fb3": 1,
+        "19c77e72422b43b59c26b9fa67af5de4": 1,
+        "8e9b1be4bcb6420dbd1d09bf04b02792": 4
+      },
+      "BOM": [
+        [
+          "Value",
+          "Quantity",
+          "Package",
+          "Components",
+          "CustomPara"
+        ],
+        [
+          "PAD_SMD_4X2MM",
+          2,
+          "PADPAD",
+          "+,-",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "",
+            "Supplier Part": ""
+          }
+        ],
+        [
+          "AN",
+          1,
+          "HDR-M-2.54_1X2",
+          "AN",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "LCSC",
+            "Supplier Part": "C124375"
+          }
+        ],
+        [
+          "I2C",
+          1,
+          "HDR-M-2.54_1X2",
+          "I2C",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "LCSC",
+            "Supplier Part": "C124375"
+          }
+        ],
+        [
+          "PWR",
+          1,
+          "HDR-M-2.54_1X2",
+          "PWR",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "LCSC",
+            "Supplier Part": "C124375"
+          }
+        ],
+        [
+          "1.25-3P",
+          1,
+          "CONN-SMD_1.25-3P",
+          "FLEX",
+          {
+            "Manufacturer Part": "1.25-3P",
+            "Manufacturer": "SHOU HAN(首韩)",
+            "Supplier": "LCSC",
+            "Supplier Part": "C393944"
+          }
+        ],
+        [
+          "HDR-M-2.54_1x4",
+          1,
+          "HDR-M-2.54_1X4",
+          "OLED",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "LCSC",
+            "Supplier Part": "C124378"
+          }
+        ],
+        [
+          "HDR-M-2.54_1x1",
+          1,
+          "HDR-M-2.54_1X1",
+          "BAT",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "LCSC",
+            "Supplier Part": "C81276"
+          }
+        ],
+        [
+          "220k",
+          2,
+          "R1206",
+          "RB1,RB2",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "",
+            "Supplier Part": ""
+          }
+        ],
+        [
+          "10k",
+          2,
+          "R1206",
+          "RF1,RF2",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "",
+            "Supplier Part": ""
+          }
+        ]
+      ],
+      "updateTime": 1764935035,
+      "createTime": 1764935035,
+      "histories": [],
+      "created_at": "2025-12-05 11:43:55",
+      "updated_at": "2025-12-05 11:43:55"
+    },
+    {
+      "uuid": "4b90ee09ddc65c938772631b427025bd",
+      "puuid": "6a525feaacb3c338e4871efd21231ddc",
+      "title": "PCB_mk2_wiring_Final",
+      "filename": "PCB_mk2_wiring_Final.json",
+      "description": "",
+      "docType": "3",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "20741e2abf7343d6818d71ced1615790": 2,
+        "70aa5812f21f4991bf427395d51849f4": 3,
+        "df40d35850de46e3a34d4a07d3c4e5bd": 1,
+        "282f7786cb6144d097ae00194c3e3fb3": 1,
+        "19c77e72422b43b59c26b9fa67af5de4": 1,
+        "8e9b1be4bcb6420dbd1d09bf04b02792": 4
+      },
+      "BOM": [
+        [
+          "Value",
+          "Quantity",
+          "Package",
+          "Components",
+          "CustomPara"
+        ],
+        [
+          "PAD_SMD_4X2MM",
+          2,
+          "PADPAD",
+          "+,-",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "",
+            "Supplier Part": ""
+          }
+        ],
+        [
+          "AN",
+          1,
+          "HDR-M-2.54_1X2",
+          "ANAL",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "LCSC",
+            "Supplier Part": "C124375"
+          }
+        ],
+        [
+          "I2C",
+          1,
+          "HDR-M-2.54_1X2",
+          "I2C",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "LCSC",
+            "Supplier Part": "C124375"
+          }
+        ],
+        [
+          "PWR",
+          1,
+          "HDR-M-2.54_1X2",
+          "PWR",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "LCSC",
+            "Supplier Part": "C124375"
+          }
+        ],
+        [
+          "1.25-3P",
+          1,
+          "CONN-SMD_1.25-3P",
+          "FLEX",
+          {
+            "Manufacturer Part": "1.25-3P",
+            "Manufacturer": "SHOU HAN(首韩)",
+            "Supplier": "LCSC",
+            "Supplier Part": "C393944"
+          }
+        ],
+        [
+          "HDR-M-2.54_1x4",
+          1,
+          "HDR-M-2.54_1X4",
+          "OLED",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "LCSC",
+            "Supplier Part": "C124378"
+          }
+        ],
+        [
+          "HDR-M-2.54_1x1",
+          1,
+          "HDR-M-2.54_1X1",
+          "BAT",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "LCSC",
+            "Supplier Part": "C81276"
+          }
+        ],
+        [
+          "220k",
+          2,
+          "R1206",
+          "RB1,RB2",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "",
+            "Supplier Part": ""
+          }
+        ],
+        [
+          "10k",
+          2,
+          "R1206",
+          "RF1,RF2",
+          {
+            "Manufacturer Part": "",
+            "Manufacturer": "",
+            "Supplier": "",
+            "Supplier Part": ""
+          }
+        ]
+      ],
+      "updateTime": 1764955254,
+      "createTime": 1764954886,
+      "histories": [],
+      "created_at": "2025-12-05 17:14:46",
+      "updated_at": "2025-12-05 17:20:54"
+    }
+  ],
+  "sort": [],
+  "title": "mk2_wiring_PCB",
+  "foldername": "mk2_wiring_PCB",
+  "schfilename": "mk2_wiring_PCB.json",
+  "schfilemtime": 1764935035121.4153
+}
