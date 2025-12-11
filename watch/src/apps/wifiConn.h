@@ -15,6 +15,7 @@ public:
     void start();   // Called once to connect
     void connecting();  
     void setBendStates(int b1, int b2);
+    void bluetooth(bool option);
 
 private:
     Adafruit_SSD1306* display;

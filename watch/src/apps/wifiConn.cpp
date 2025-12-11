@@ -1,10 +1,12 @@
 #include "wifiConn.h"
+#include "BleMediaKeys.h"
 #include <WiFi.h>
 #include "time.h"
 #include <Arduino.h>
 
 // prototype for function implemented in main.cpp
 extern void printStrings(String str, int size, int x, int y);
+static BleMediaKeys bleMediaKeys("solid watch", "Espressif");
 
 WifiConn::WifiConn(Adafruit_SSD1306* disp) {
     display = disp;
@@ -76,6 +78,10 @@ void WifiConn::start() {
         if (cords[1]==0){
             WifiConn::connecting();
         }
+        else if (cords[1]==1){
+            if (cords[0]==0){WifiConn::bluetooth(true);}
+            else {WifiConn::bluetooth(false);}
+        }
         display->clearDisplay();
     }
     turnOn = false;
@@ -141,4 +147,15 @@ void WifiConn::connecting(){
     turnOn = false;
 
     display->clearDisplay();
+}
+
+void WifiConn::bluetooth(bool option){
+    if (option == true){
+        bleMediaKeys.begin();
+        Serial.println("BLE Media Keys enabled");
+    }
+    else {
+        bleMediaKeys.end();
+        Serial.println("BLE Media Keys disabled");
+    }
 }

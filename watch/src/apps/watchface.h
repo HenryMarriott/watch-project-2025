@@ -18,7 +18,6 @@ private:
     Adafruit_SSD1306* display;
     int t = 0;
     struct tm prevTime;
-    bool firstUpdate = true;
     int bent1;
     int bent2;
 };

@@ -14,9 +14,6 @@ void watchface::setBendStates(int b1, int b2) {
     bent1 = b1;
     bent2 = b2;
 }
-void watchface::setFirstUpdate(bool v) {
-    firstUpdate = v;
-}
 
 
 void watchface::start(){
@@ -36,64 +33,26 @@ void watchface::start(){
     strftime(yearStr, sizeof(yearStr), "%Y", &timeinfo);
     String yearA = String(yearStr).substring(3, 5);
 
-    if (firstUpdate)
-    {
-        String bottomText = "kept you waiting, huh?";
-        printStrings(bottomText, 1, 0, 48);
-        display->setTextSize(1);
-        display->setTextColor(WHITE);
-        display->setCursor(0, 10);
-        display->print(dayA);
-        display->print(", ");
-        display->print(&timeinfo, "%d");
-        display->print(" ");
-        display->println(monthA);
+    display->clearDisplay();
 
-        display->setTextSize(3);
-        display->setCursor(0, 18);
-        display->print(&timeinfo, "%H:%M");
-        display->setTextSize(2);
-        display->setCursor(90,25);
-        display->print(&timeinfo, "%S");
-        display->display();
-    }
+    String bottomText = "kept you waiting, huh?";
+    printStrings(bottomText, 1, 0, 48);
+    display->setTextSize(1);
+    display->setTextColor(WHITE);
+    display->setCursor(0, 10);
+    display->print(dayA);
+    display->print(", ");
+    display->print(&timeinfo, "%d");
+    display->print(" ");
+    display->println(monthA);
 
-    if (prevTime.tm_mday != timeinfo.tm_mday)
-    {
-        display->fillRect(0, 0, 60, 8, BLACK);
-        display->setTextSize(1);
-        display->setTextColor(WHITE);
-        display->setCursor(0, 10);
-        display->print(dayA);
-        display->print(", ");
-        display->print(&timeinfo, "%d");
-        display->print(" ");
-        display->println(monthA);
-    }
-
-    if (prevTime.tm_hour != timeinfo.tm_hour)
-    {
-        display->fillRect(0, 18, 90, 24, BLACK);
-        display->setTextSize(3);
-        display->setCursor(0, 18);
-        display->print(&timeinfo, "%H:%M");
-    }
-
-    if (prevTime.tm_min != timeinfo.tm_min)
-    {
-        display->fillRect(54, 18, 36, 24, BLACK);
-        display->setTextSize(3);
-        display->setCursor(54, 18);
-        display->print(&timeinfo, "%M");
-    }
-
-    if (prevTime.tm_sec != timeinfo.tm_sec)
-    {
-        display->fillRect(90, 25, 24, 16, BLACK);
-        display->setTextSize(2);
-        display->setCursor(90, 25);
-        display->print(&timeinfo, "%S");
-    }
+    display->setTextSize(3);
+    display->setCursor(0, 18);
+    display->print(&timeinfo, "%H:%M");
+    display->setTextSize(2);
+    display->setCursor(90,25);
+    display->print(&timeinfo, "%S");
+    display->display();
 
     display->fillRect(110, 0, 6, 8, BLACK);
     display->setTextSize(1);
@@ -109,5 +68,4 @@ void watchface::start(){
     display->display();
 
     prevTime = timeinfo;
-    firstUpdate = false;
 }

@@ -1,4 +1,3 @@
-#include "apps/menu.h"
 #include "apps/wifiConn.h"
 #include "apps/watchface.h"
 
@@ -17,7 +16,6 @@
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 WifiConn wifi(&display);
-Menu menu(&display, &wifi);
 watchface wf(&display);
 
 
@@ -27,6 +25,10 @@ const int flex1 = A0;  // GPIO 4 (analog capable)
 int bent1 = 0;
 const int flex2 = A1;  // GPIO 5 (analog capable)
 int bent2 = 0;
+bool select1;
+int cords = 0;
+int l;
+String apps[3] = {".settings", ".maps", ".timers"};
 
 void printStrings(String str, int size, int x, int y);
 void flexRead();
@@ -46,14 +48,46 @@ void loop() {
     flexRead();
     wf.setBendStates(bent1, bent2);
     wifi.setBendStates(bent1, bent2);
-    menu.setBendStates(bent1, bent2);
     if (t > 9){
         wf.start();
         t = 0;
     } else {t++;}
     if (bent1 == 1 && bent2 == 1){
-        wf.setFirstUpdate(true);
-        menu.start();
+        // hello
+        select1 = false;
+        display.clearDisplay();
+        for (l = 0; l < 3; ) {
+                printStrings(apps[l], 1, 10,10*l);
+                l++;
+            }
+        display.display();    
+        delay(500);
+        while (select1 == false){
+            for (l = 0; l < 6; ) {
+                display.fillRect(11,(l*10)+8,128,1,BLACK);
+                l++;
+            }
+            flexRead();
+            if (bent1==1 && bent2==1){
+                select1 = true; 
+            }
+            else if (bent1==1 && bent2==0){
+                if (cords < 5){
+                    cords++;
+                }
+                else{cords = 0;}
+            }
+            display.fillRect(10, cords*10+8, apps[cords].length()*6, 1, WHITE);
+            display.display();
+            delay(100);
+        }
+
+        display.clearDisplay();
+
+        if (cords == 0){
+            wifi.start();
+        }
+        //goodbye
     }
     delay(10);
 }
@@ -94,5 +128,4 @@ void flexRead() {
 
     wf.setBendStates(bent1, bent2);
     wifi.setBendStates(bent1, bent2);
-    menu.setBendStates(bent1, bent2);
 }
