@@ -15,7 +15,15 @@ public:
     void start();   // Called once to connect
     void connecting();  
     void setBendStates(int b1, int b2);
-    void bluetooth(bool option);
+    void bluetooth(bool option, bool newConn);
+    void skip();
+    void back();
+    void pause();
+    void volumeUp();
+    void volumeDown();
+    void mute();
+
+    bool isBleConnected();
 
 private:
     Adafruit_SSD1306* display;
@@ -30,4 +38,5 @@ private:
     int bent1;
     int bent2;
     int t = 0;
+    bool conn = false;
 };

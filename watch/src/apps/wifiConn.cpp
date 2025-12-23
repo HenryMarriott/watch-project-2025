@@ -1,12 +1,18 @@
 #include "wifiConn.h"
-#include "BleMediaKeys.h"
+
 #include <WiFi.h>
 #include "time.h"
 #include <Arduino.h>
 
+#include <BleKeyboard.h>
+#include <NimBLEDevice.h>
+#include <NimBLEAdvertisedDevice.h>
+#include "NimBLEEddystoneTLM.h"
+#include "NimBLEBeacon.h"
+
 // prototype for function implemented in main.cpp
 extern void printStrings(String str, int size, int x, int y);
-static BleMediaKeys bleMediaKeys("solid watch", "Espressif");
+BleKeyboard bleKeyboard("solid watch", "MyCompany", 100);
 
 WifiConn::WifiConn(Adafruit_SSD1306* disp) {
     display = disp;
@@ -26,9 +32,10 @@ void WifiConn::start() {
         select = false;
 
         display->clearDisplay();
-        printStrings("Time Reset:  go", 1, 0,0);
+        printStrings("Time Reset:      go", 1, 0,0);
         printStrings("Bluetooth:   on/off", 1, 0,10);
-        printStrings("exit?", 1, 5,20);
+        printStrings("New Connection:  go", 1, 0,20);
+        printStrings("exit?", 1, 5,30);
 
         delay(500);
 
@@ -41,7 +48,7 @@ void WifiConn::start() {
             }
             
             if (bent1==1 && bent2 == 0){
-                if (cords[1] < 2){
+                if (cords[1] < 3){
                     cords[1]++;
                 }
                 else {cords[1]=0;}
@@ -56,8 +63,9 @@ void WifiConn::start() {
             display->fillRect(0,8,128,1,BLACK);
             display->fillRect(0,18,128,1,BLACK);
             display->fillRect(0,28,128,1,BLACK);
+            display->fillRect(0,38,128,1,BLACK);
             if (cords[1]==0){
-                display->fillRect((6*13),8,(6*2),1,WHITE);
+                display->fillRect((6*17),8,(6*2),1,WHITE);
             }
             else if (cords[1]==1){
                 if (cords[0]==0){
@@ -68,20 +76,27 @@ void WifiConn::start() {
                 }
             }
             else if (cords[1]==2){
-                display->fillRect(5,28,(6*4),1,WHITE);
+                display->fillRect((6*17),28,(6*2),1,WHITE);
             }
+
+            else if (cords[1]==3){
+                display->fillRect(5,38,(6*4),1,WHITE);
+            }
+
+            else{display->fillRect(5,28,(6*4),1,WHITE);}
             // check for a change in co-oridinates 
             // display underline depending on co-ordinates 
             display->display();
-            delay(200);
+            delay(300);
         }
         if (cords[1]==0){
             WifiConn::connecting();
         }
         else if (cords[1]==1){
-            if (cords[0]==0){WifiConn::bluetooth(true);}
-            else {WifiConn::bluetooth(false);}
+            if (cords[0]==0){WifiConn::bluetooth(true,false);}
+            else {WifiConn::bluetooth(false,false);}
         }
+        else if (cords[1]==2){WifiConn::bluetooth(true,true);}
         display->clearDisplay();
     }
     turnOn = false;
@@ -149,13 +164,86 @@ void WifiConn::connecting(){
     display->clearDisplay();
 }
 
-void WifiConn::bluetooth(bool option){
+void WifiConn::bluetooth(bool option, bool newConn){
     if (option == true){
-        bleMediaKeys.begin();
-        Serial.println("BLE Media Keys enabled");
+        conn = false;
+        NimBLEDevice::setSecurityAuth(true, true, true);  // bonding, MITM, secure
+        NimBLEDevice::setSecurityIOCap(BLE_HS_IO_NO_INPUT_OUTPUT);
+
+        // Start the HID server (this registers services/characteristics)
+        bleKeyboard.begin();
+        delay(500);
+
+        NimBLEAdvertising* pAdvertising = NimBLEDevice::getAdvertising();
+        pAdvertising->setName("solid watch");                     // complete local name
+        pAdvertising->addServiceUUID(NimBLEUUID((uint16_t)0x1812)); // HID service
+        pAdvertising->setAppearance(HID_MOUSE);
+        NimBLEDevice::startAdvertising();
+        
+        if (newConn == true){
+            while (conn==false){
+                if (bleKeyboard.isConnected()) {
+                    display->clearDisplay();
+                    printStrings("connecting...", 1, 0,0);
+                    display->display();
+                    delay(10000);
+                    conn = true;
+                }
+                else {
+                    display->clearDisplay();
+                    printStrings("i'm trying...", 1, 0,0);
+                    display->display();
+                    delay(200); 
+                }
+            }
+        }
+        if (newConn == false){
+            while (conn==false){
+                if (bleKeyboard.isConnected()) {
+                    display->clearDisplay();
+                    printStrings("connecting...", 1, 0,0);
+                    display->display();
+                    delay(1000);
+                    conn = true;
+                }
+                else {
+                    display->clearDisplay();
+                    printStrings("i'm trying...", 1, 0,0);
+                    display->display();
+                    delay(200); 
+                }
+            }            
+        }
+
     }
     else {
-        bleMediaKeys.end();
-        Serial.println("BLE Media Keys disabled");
+        bleKeyboard.end();
+        delay(500);
+        NimBLEDevice::deinit(true);
+        delay(200);
     }
+}
+
+void WifiConn::skip() {
+    bleKeyboard.write(KEY_MEDIA_NEXT_TRACK);
+}
+void WifiConn::back() {
+    bleKeyboard.write(KEY_MEDIA_PREVIOUS_TRACK);
+}
+void WifiConn::pause() {
+    bleKeyboard.write(KEY_MEDIA_PLAY_PAUSE);
+}
+void WifiConn::volumeUp() {
+    bleKeyboard.write(KEY_MEDIA_VOLUME_UP);
+}
+void WifiConn::volumeDown() {
+    bleKeyboard.write(KEY_MEDIA_VOLUME_DOWN);
+}
+void WifiConn::mute() {
+    bleKeyboard.write(KEY_MEDIA_MUTE);
+}
+
+
+bool WifiConn::isBleConnected() {
+    return bleKeyboard.isConnected();
 }

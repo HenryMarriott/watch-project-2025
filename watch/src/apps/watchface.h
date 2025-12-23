@@ -10,8 +10,10 @@ class watchface {
 public:
     watchface(Adafruit_SSD1306* disp);  
 
-    void start(); 
     void setBendStates(int b1, int b2);
+    void disconn(); 
+    void conn();
+    void menu();
     void setFirstUpdate(bool v);
 
 private:
